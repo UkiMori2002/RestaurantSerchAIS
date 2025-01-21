@@ -1,97 +1,442 @@
 {
-    "project": {
-        "id": "zb-cailapub",
-        "name": "zb-cailapub",
-        "folder": "/platform"
+  "project" : {
+    "id" : "restaurantserch-1000195153-ASS",
+    "name" : "restaurantserch-1000195153-ASS",
+    "folder" : "/platform"
+  },
+  "settings" : {
+    "language" : "ru",
+    "spellingCorrection" : true,
+    "classificationAlgorithm" : "sts",
+    "timezone" : "Europe/Moscow",
+    "extendedSettings" : {
+      "classificationAlgorithmVersion" : 1.0,
+      "tokenizerEngine" : "mystem",
+      "useShared" : false
     },
-    "settings": {
-        "language": "ru",
-        "spellingCorrection": false,
-        "classificationAlgorithm": "sts",
-        "validation": {
-            "phraseValidationEnabled": true,
-            "answerValidationEnabled": true,
-            "phraseValidationThreshold": 0.5,
-            "answerValidationThreshold": 0.8
-        },
-        "timezone": "Europe/Moscow",
-        "extendedSettings": {
-            "classificationAlgorithmVersion": 1.0,
-            "tokenizerEngine": "mystem",
-            "useShared": false
-        }
+    "shared" : false,
+    "validation" : {
+      "phraseValidationEnabled" : true,
+      "answerValidationEnabled" : true,
+      "phraseValidationThreshold" : 0.5,
+      "answerValidationThreshold" : 0.8
+    }
+  },
+  "intents" : [ {
+    "path" : "/найди заведение",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Найди ресторан с итальянской кухней"
+    }, {
+      "text" : "Покажи кафе в центре"
+    }, {
+      "text" : "Ищу бар с высоким рейтингом"
+    }, {
+      "text" : "Где можно поесть суши"
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "TypeCuisine",
+        "predicate" : "CONTAINS"
+      }, {
+        "entityName" : "AreaCity",
+        "predicate" : "CONTAINS"
+      }, {
+        "entityName" : "Rating",
+        "predicate" : "CONTAINS"
+      }, {
+        "entityName" : "WorkingHours",
+        "predicate" : "CONTAINS"
+      } ]
     },
-    "intents": [
-        {
-            "path": "/пока",
-            "description": null,
-            "answer": null,
-            "customData": null,
-            "enabled": true,
-            "phrases": [
-                {
-                    "text": "пока",
-                    "entities": null
-                }
-            ],
-            "patterns": null,
-            "slots": null
-        },
-        {
-            "path": "/привет",
-            "description": null,
-            "answer": null,
-            "customData": null,
-            "enabled": true,
-            "phrases": [
-                {
-                    "text": "привет",
-                    "entities": null
-                }
-            ],
-            "patterns": null,
-            "slots": null
-        }
-    ],
-    "entities": [],
-    "enabledSystemEntities": [
-        "duckling.number",
-        "duckling.time",
-        "duckling.duration",
-        "duckling.phone-number",
-        "duckling.email",
-        "duckling.url"
-    ],
-    "systemEntities": [
-        {
-            "name": "duckling.number",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.time",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.duration",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.phone-number",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.email",
-            "version": "v2",
-            "enabled": true
-        },
-        {
-            "name": "duckling.url",
-            "version": "v2",
-            "enabled": true
-        }
-    ]
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/FindRestaurant",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Найди кафе в свердловском районе "
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "AreaCity",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/найди по рейтингу",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Найди кафе со средним рейтингом"
+    }, {
+      "text" : "Найди ресторан с высоким рейтингом "
+    }, {
+      "text" : "Найди бар с низким рейтингом"
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "Rating",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
+    "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/найди по кухне",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Найди кафе с японской кухней "
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "TypeCuisine",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/пока",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "пока"
+    }, {
+      "text" : "покеда "
+    }, {
+      "text" : "до свидания "
+    }, {
+      "text" : "гуйдбай "
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/привет",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "привет"
+    }, {
+      "text" : "прив"
+    }, {
+      "text" : "ку"
+    }, {
+      "text" : "хай"
+    }, {
+      "text" : "здравствуй "
+    }, {
+      "text" : "здравствуйте "
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/найди по стоимости",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Покажи недорогие кафе"
+    }, {
+      "text" : "Ищу ресторан с бюджетом до 1000 рублей"
+    }, {
+      "text" : "Где можно поесть дёшево"
+    }, {
+      "text" : "Покажи дорогие рестораны "
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "AverageBill",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  } ],
+  "entities" : [ {
+    "entity" : {
+      "name" : "AreaCity",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "район новоленино ", "новоленино ", "новоляга" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "куйбышевский район", "куйбышевский " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "район академгородок ", "академгородок" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "второй иркутск " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "октябрьский район", "октябрьский " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "кировский район", "центр", "кировский " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "свердловский район", "свердловский " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "район аэропорта", "аэропорт " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "район солнечный ", "солнечный " ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "AverageBill",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "дешевый", "дешёвый ", "маленькая стоимость ", "недорогое ", "недорогой" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "дорогой", "богатый " ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "Rating",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "средний", "4", "4,5" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "высокий", "5" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "низкий", "3", "2", "1" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "TypeCuisine",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "бурятский ", "бурятская", "позы", "лагман " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "коррейский", "коррейская", "кимчи", "токпоки ", "ток-поки", "рис" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "халяльный ", "халяль ", "шаурма ", "нут " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "русский", "русская", "борщ ", "чесночные гренки ", "блины ", "сметана " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "европейский ", "европейская ", "пицца", "паста " ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "итальянский", "итальянская", "паста", "карбонара  ", "пицца" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "американский", "американская", "фастфуд", "фаст-фуд", "стрит-фуд" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "WorkingHours",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "день", "дневные" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "круглосуточно", "весь день", "ночное ", "ночью" ],
+      "value" : ""
+    } ]
+  } ],
+  "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
+  "spellerDictionary" : [ ],
+  "systemEntities" : [ {
+    "name" : "mystem.geo",
+    "enabled" : false
+  }, {
+    "name" : "mystem.persn",
+    "enabled" : false
+  }, {
+    "name" : "mystem.obsc",
+    "enabled" : false
+  }, {
+    "name" : "mystem.patrn",
+    "enabled" : false
+  }, {
+    "name" : "mystem.famn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.romn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.latn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.numb",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.intg",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.abbr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.name",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.surn",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.patr",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.geox",
+    "enabled" : false
+  }, {
+    "name" : "pymorphy.orgn",
+    "enabled" : false
+  }, {
+    "name" : "duckling.number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.ordinal",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.amount-of-money",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.distance",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.date",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.time-of-day",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "duckling.duration",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.phone-number",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.email",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.url",
+    "version" : "v2",
+    "enabled" : true
+  }, {
+    "name" : "duckling.interval",
+    "version" : "v2",
+    "enabled" : false
+  }, {
+    "name" : "mlps-obscene.obscene",
+    "enabled" : false
+  }, {
+    "name" : "zb.datetime",
+    "enabled" : false
+  }, {
+    "name" : "zb.number",
+    "enabled" : false
+  } ],
+  "faq" : [ ],
+  "skills" : [ ]
 }
