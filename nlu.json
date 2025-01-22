@@ -27,20 +27,26 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Найди ресторан с итальянской кухней"
-    }, {
-      "text" : "Покажи кафе в центре"
-    }, {
-      "text" : "Ищу бар с высоким рейтингом"
-    }, {
-      "text" : "Где можно поесть суши"
-    }, {
       "text" : "найди бар"
+    }, {
+      "text" : "ресторан "
+    }, {
+      "text" : "кафе"
+    }, {
+      "text" : "бар"
+    }, {
+      "text" : "найди кафе"
+    }, {
+      "text" : "найди ресторан "
     } ],
     "classificationRules" : {
-      "refs" : [ ]
+      "refs" : [ {
+        "entityName" : "Type",
+        "predicate" : "CONTAINS"
+      } ]
     },
     "patterns" : [ ],
+    "slots" : [ ],
     "priority" : 0
   }, {
     "path" : "/AreaRequest",
@@ -126,6 +132,8 @@
       "text" : "здравствуй "
     }, {
       "text" : "здравствуйте "
+    }, {
+      "text" : "давай"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -317,6 +325,33 @@
     }, {
       "type" : "synonyms",
       "rule" : [ "круглосуточно", "весь день", "ночное ", "ночью" ],
+      "value" : ""
+    } ]
+  }, {
+    "entity" : {
+      "name" : "Type",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "Бар", "бар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Кафе", "кафе" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Ресторан", "ресторан" ],
       "value" : ""
     } ]
   } ],

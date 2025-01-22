@@ -10,70 +10,56 @@ theme: /
 
     state: Hello
         intent!: /привет
-        a: Привет! Какой тип заведения вы ищете? (ресторан, бар, кафе)
+        a: Какой тип заведения вы ищете? (ресторан, бар, кафе)
         intent: /FindRestaurant || toState = "/Запрос типа заведения"
         event: noMatch || toState = "./"
 
     state: Запрос типа заведения
         a: Какой тип заведения вы ищете? (ресторан, бар, кафе)
-        buttons:
-            "Ресторан" -> /Определение типа заведения
-            "Бар" -> /Определение типа заведения
-            "Кафе" -> /Определение типа заведения
         intent: /FindRestaurant || toState = "/Определение типа заведения"
 
     state: Определение типа заведения
         intent!: /FindRestaurant
         script:
-            // Если значение передано через кнопку, извлекаем его из $context.query
-            if ($context.query == "Ресторан") {
-                $session.establishmentType = "ресторан";
-            } else if ($context.query == "Бар") {
-                $session.establishmentType = "бар";
-            } else if ($context.query == "Кафе") {
-                $session.establishmentType = "кафе";
-            } else {
-                // Если значение передано через текст, извлекаем его
-                $session.establishmentType = $parseTree._EstablishmentType;
-            }
+            // Извлекаем тип заведения из текста пользователя
+            $session.establishmentType = $parseTree._Type; 
         if: $session.establishmentType == undefined
-            a: Я не понял. Вы сказали: {{$request.query}}
+            a: Я не понял. Вы сказали: {{$request.query}}. Пожалуйста, выберите из списка: ресторан, бар, кафе.
             go!: /Запрос типа заведения
         else: 
             a: Вы ищете {{$session.establishmentType}}. В каком районе вы хотите найти заведение?
             go!: /Запрос района
-        event: noMatch || toState = "./"
+            
+    # state: Запрос района
+    #     a: В каком районе вы хотите найти заведение?
+    #     buttons:
+    #         "Центр" -> /Определение района
+    #         "Кировский район" -> /Определение района
+    #         "Окраина" -> /Определение района
+    #     intent: /AreaRequest || toState = "/Определение района"
+    #     event: noMatch || toState = "./"
 
-    state: Запрос района
-        a: В каком районе вы хотите найти заведение?
-        buttons:
-            "Центр" -> /Определение района
-            "Кировский район" -> /Определение района
-            "Окраина" -> /Определение района
-        intent: /AreaRequest || toState = "/Определение района"
-        event: noMatch || toState = "./"
-
-    state: Определение района
-        intent!: /AreaRequest
-        script:
-            // Если значение передано через кнопку, извлекаем его из $context.query
-            if ($context.query == "Центр") {
-                $session.area = "центр";
-            } else if ($context.query == "Кировский район") {
-                $session.area = "кировский район";
-            } else if ($context.query == "Окраина") {
-                $session.area = "окраина";
-            } else {
-                // Если значение передано через текст, извлекаем его
-                $session.area = $parseTree._Area;
-            }
-        if: $session.area == undefined
-            a: Я не понял. Вы сказали: {{$request.query}}
-            go!: /Запрос района
-        else: 
-            a: Вы выбрали район {{$session.area}}. Какую кухню вы предпочитаете?
-            go!: /Запрос кухни
-        event: noMatch || toState = "./"
+    # state: Определение района
+    #     intent!: /AreaRequest
+    #     script:
+    #         // Если значение передано через кнопку, извлекаем его из $context.query
+    #         if ($context.query == "Центр") {
+    #             $session.area = "центр";
+    #         } else if ($context.query == "Кировский район") {
+    #             $session.area = "кировский район";
+    #         } else if ($context.query == "Окраина") {
+    #             $session.area = "окраина";
+    #         } else {
+    #             // Если значение передано через текст, извлекаем его
+    #             $session.area = $parseTree._Area;
+    #         }
+    #     if: $session.area == undefined
+    #         a: Я не понял. Вы сказали: {{$request.query}}
+    #         go!: /Запрос района
+    #     else: 
+    #         a: Вы выбрали район {{$session.area}}. Какую кухню вы предпочитаете?
+    #         go!: /Запрос кухни
+    #     event: noMatch || toState = "./"
 
     # state: Запрос кухни
     #     a: Какую кухню вы предпочитаете? (итальянская, японская, европейская)
@@ -174,7 +160,7 @@ theme: /
 
     state: NoMatch
         event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
+        a: Я не понял. Вы сказали: {{$request.query}} .
         go!: /Start
 
     state: Bye
