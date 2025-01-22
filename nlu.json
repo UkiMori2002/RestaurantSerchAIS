@@ -23,7 +23,7 @@
     }
   },
   "intents" : [ {
-    "path" : "/найди заведение",
+    "path" : "/FindRestaurant",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -34,26 +34,16 @@
       "text" : "Ищу бар с высоким рейтингом"
     }, {
       "text" : "Где можно поесть суши"
+    }, {
+      "text" : "найди бар"
     } ],
     "classificationRules" : {
-      "refs" : [ {
-        "entityName" : "TypeCuisine",
-        "predicate" : "CONTAINS"
-      }, {
-        "entityName" : "AreaCity",
-        "predicate" : "CONTAINS"
-      }, {
-        "entityName" : "Rating",
-        "predicate" : "CONTAINS"
-      }, {
-        "entityName" : "WorkingHours",
-        "predicate" : "CONTAINS"
-      } ]
+      "refs" : [ ]
     },
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/FindRestaurant",
+    "path" : "/AreaRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -68,7 +58,7 @@
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/найди по рейтингу",
+    "path" : "/найти по рейтингу",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -88,7 +78,7 @@
     "slots" : [ ],
     "priority" : 0
   }, {
-    "path" : "/найди по кухне",
+    "path" : "/CuisineRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -143,13 +133,11 @@
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/найди по стоимости",
+    "path" : "/BudgetRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
       "text" : "Покажи недорогие кафе"
-    }, {
-      "text" : "Ищу ресторан с бюджетом до 1000 рублей"
     }, {
       "text" : "Где можно поесть дёшево"
     }, {
@@ -301,7 +289,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "итальянский", "итальянская", "паста", "карбонара  ", "пицца" ],
+      "rule" : [ "итальянский", "итальянская", "паста", "карбонара  ", "пицца", "итальянской" ],
       "value" : ""
     }, {
       "type" : "synonyms",
